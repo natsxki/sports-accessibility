@@ -8,3 +8,7 @@ Sports Image Processing &amp; Accessibility System (Computer Vision)
 
 ## Achievement :)
 Ranked in the top 3% of nationwide engineering candidates (20/20 at the TIPE) 
+
+## Content
+- Presentation slides (theory, analysis, experimental values)
+- Python, Arduino (C++) code
