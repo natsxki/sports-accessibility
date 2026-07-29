@@ -23,7 +23,7 @@
 
 <div align="center">
 
-### 20/20 at the TIPE— ranked in the top 0-3% of engineering candidates nationwide
+### 20/20 at the TIPE- ranked in the top 0-3% of engineering candidates nationwide
 
 *Built as a French* classe préparatoire *research project (TIPE), presented and graded on the competitive-exam scale.*
 
@@ -43,10 +43,10 @@ It combines:
 
 ## Features
 
-- **Real-time ball tracking** — a YOLO model (trained on a custom football dataset via Roboflow) detects the ball frame by frame
-- **Automatic field detection** — the pitch corners are found on the fly and used to build a homography, so pixel positions map to true field coordinates
-- **Vision to motion bridge** — ball coordinates are streamed over serial to an Arduino that moves a stepper motor accordingly
-- **Camera-placement study** — a helper script generates and visualizes candidate camera positions in 3D to find angles where tracking actually works
+- **Real-time ball tracking** - a YOLO model (trained on a custom football dataset via Roboflow) detects the ball frame by frame
+- **Automatic field detection** - the pitch corners are found on the fly and used to build a homography, so pixel positions map to true field coordinates
+- **Vision to motion bridge** - ball coordinates are streamed over serial to an Arduino that moves a stepper motor accordingly
+- **Camera-placement study** - a helper script generates and visualizes candidate camera positions in 3D to find angles where tracking actually works
 
 ---
 
@@ -82,15 +82,15 @@ It combines:
 
 **The vision pipeline, step by step:**
 
-1. **Field segmentation** — the frame is converted to HSV and masked to the green of the pitch, then denoised with Otsu thresholding and a morphological close.
-2. **Corner detection** — Canny edges → contours → `approxPolyDP` (Ramer–Douglas–Peucker smoothing) → a size filter → convex hull → **Shi–Tomasi** corner detection to pull out the field's four corners.
-3. **Homography** — the four corners are sorted and matched to a reference rectangle, giving a transform `H` from image pixels to real field coordinates.
-4. **Ball detection** — the YOLO model infers the ball's bounding box; its ground point is projected through `H`.
-5. **Send it** — the resulting x-coordinate is written over serial to the Arduino.
+1. **Field segmentation** - the frame is converted to HSV and masked to the green of the pitch, then denoised with Otsu thresholding and a morphological close.
+2. **Corner detection** - Canny edges → contours → `approxPolyDP` (Ramer–Douglas–Peucker smoothing) → a size filter → convex hull → **Shi–Tomasi** corner detection to pull out the field's four corners.
+3. **Homography** - the four corners are sorted and matched to a reference rectangle, giving a transform `H` from image pixels to real field coordinates.
+4. **Ball detection** - the YOLO model infers the ball's bounding box; its ground point is projected through `H`.
+5. **Send it** - the resulting x-coordinate is written over serial to the Arduino.
 
 **On the Arduino side (`main.ino`):** it reads the incoming coordinate, computes the stepper's rotation speed and step count from the belt/pulley geometry (capped at a max speed), moves the motor, and gracefully returns to its origin if the serial link drops.
 
-**Camera planning (`positions.py`):** converts spherical camera positions to cartesian around the field center and plots them as a 3D surface — a neat way to reason about which viewing angles keep the four-corner detection reliable.
+**Camera planning (`positions.py`):** converts spherical camera positions to cartesian around the field center and plots them as a 3D surface - a neat way to reason about which viewing angles keep the four-corner detection reliable.
 
 ---
 
@@ -101,7 +101,7 @@ sports-accessibility/
 ├── main.py            ⋆ vision pipeline: field homography + ball tracking → serial
 ├── main.ino           ✧ Arduino: turns coordinates into stepper-motor motion
 ├── positions.py       · 3D study of candidate camera placements
-└── Presentation.pdf   · slides — theory, analysis & experimental results
+└── Presentation.pdf   · slides - theory, analysis & experimental results
 ```
 
 📄 The **[presentation](Presentation.pdf)** covers the theory, the analysis, and the experimental measurements in full.
@@ -117,7 +117,7 @@ pip install opencv-python numpy inference pyserial matplotlib
 python3 main.py
 ```
 
-You'll need a webcam, a green playing surface in view, and the Arduino connected on the serial port set in `main.py` (`COM3` by default — change it to match your machine, e.g. `/dev/tty.usbmodem…` on macOS).
+You'll need a webcam, a green playing surface in view, and the Arduino connected on the serial port set in `main.py` (`COM3` by default - change it to match your machine, e.g. `/dev/tty.usbmodem…` on macOS).
 
 **Motion (Arduino):** flash `main.ino` to your board (wired to a stepper motor via pins 8–11), then run the Python script to start streaming coordinates.
 
