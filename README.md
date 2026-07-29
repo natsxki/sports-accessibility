@@ -54,26 +54,26 @@ It combines:
 
 ```
    ┌──────────────────────── main.py (vision) ────────────────────────┐
-   │                                                                   │
-   │  camera frame                                                     │
-   │      │                                                            │
-   │      ▼                                                            │
+   │                                                                  │
+   │  camera frame                                                    │
+   │      │                                                           │
+   │      ▼                                                           │
    │  ① find the field                    ② find the ball             │
-   │     HSV green mask                       YOLO model (Roboflow)    │
-   │     → Otsu + morphology                  → bounding box           │
-   │     → Canny edges                              │                  │
-   │     → contours → convex hull                   │                  │
-   │     → Shi–Tomasi corners (×4)                  │                  │
-   │           │                                    │                  │
-   │           ▼                                    ▼                  │
-   │     homography H  ───────────▶  project ball onto field coords    │
-   │                                                │                  │
+   │     HSV green mask                       YOLO model (Roboflow)   │
+   │     → Otsu + morphology                  → bounding box          │
+   │     → Canny edges                              │                 │
+   │     → contours → convex hull                   │                 │
+   │     → Shi–Tomasi corners (×4)                  │                 │
+   │           │                                    │                 │
+   │           ▼                                    ▼                 │
+   │     homography H  ───────────▶  project ball onto field coords   │
+   │                                                │                 │
    └────────────────────────────────────────────────┼─────────────────┘
-                                                     │  x-coordinate
+                                                    │  x-coordinate
                                         serial (115200 baud)
-                                                     │
-                                                     ▼
-   ┌──────────────────────── main.ino (motion) ───────────────────────┐
+                                                    │
+                                                    ▼
+   ┌──────────────────────── main.ino (motion) ─────────────────────-──┐
    │  read target x  →  compute speed & step count  →  drive stepper   │
    │  motor + belt to the matching position (returns home if signal    │
    │  drops)                                                           │
