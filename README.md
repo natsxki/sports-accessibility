@@ -10,7 +10,6 @@
 ![OpenCV](https://img.shields.io/badge/OpenCV-image%20processing-C8B6FF?style=flat-square&logo=opencv&logoColor=white)
 ![YOLO](https://img.shields.io/badge/YOLO-Roboflow-B5D8FF?style=flat-square)
 ![Arduino](https://img.shields.io/badge/Arduino-stepper%20motor-B8E6D9?style=flat-square&logo=arduino&logoColor=white)
-![Score](https://img.shields.io/badge/TIPE-20%2F20%20✧-FFE0B5?style=flat-square)
 
 <br>
 
